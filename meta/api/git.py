@@ -6,6 +6,7 @@
 """API for accessing basic git functionality."""
 
 import logging
+import os
 
 import meta.shell
 
@@ -21,6 +22,8 @@ def clone(url, directory=None, silent=False):
 
     if directory is None:
         directory = url.split("/")[-1].replace(".git", "")
+
+    directory = os.path.abspath(directory)
 
     logging.info("Git API accessed with command clone %s", url)
 
