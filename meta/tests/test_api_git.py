@@ -60,3 +60,10 @@ def test_silent_clone(shell_mock):
     meta.api.git.clone("https://github.com/fsufitch/git-gud.git", silent=True)
     shell_mock.assert_called_with(
         "git clone https://github.com/fsufitch/git-gud.git git-gud", silent=True)
+
+def test_clone_different_directory(shell_mock):
+    """Ensure that the clone command, if called with a different directory gets
+    passedd correctly to the underlying shell function"""
+    meta.api.git.clone("git@github.com:fsufitch/git-gud.git", directory="hello-world", silent=False)
+    shell_mock.assert_called_with(
+        "git clone git@github.com:fsufitch/git-gud.git hello-world", silent=False)
