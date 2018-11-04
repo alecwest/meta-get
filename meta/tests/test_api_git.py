@@ -50,12 +50,13 @@ def test_command_execution_return(shell_mock):
 def test_clone(shell_mock):
     """Ensure that the clone command gets passed correctly to the underlying shell function."""
     meta.api.git.clone("https://github.com/fsufitch/git-gud.git", silent=False)
-    shell_mock.assert_called_with("git clone https://github.com/fsufitch/git-gud.git git-gud", silent=False)
+    shell_mock.assert_called_with(
+        "git clone https://github.com/fsufitch/git-gud.git git-gud", silent=False)
 
 
 def test_silent_clone(shell_mock):
     """Ensure that the clone command, if called silently gets passed correctly
     to the underlying shell function."""
     meta.api.git.clone("https://github.com/fsufitch/git-gud.git", silent=True)
-    shell_mock.assert_called_with("git clone https://github.com/fsufitch/git-gud.git git-gud", silent=True)
-
+    shell_mock.assert_called_with(
+        "git clone https://github.com/fsufitch/git-gud.git git-gud", silent=True)
